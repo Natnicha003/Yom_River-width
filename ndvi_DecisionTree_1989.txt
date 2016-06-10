@@ -13,7 +13,7 @@ begin node
   location = 2,2
   parent name = "NDVI"
   parent decision = Yes
-  expression = "(b2-b4)/(b2+b4) LE -0.3"
+  expression = "(b2+b5^b4)/(b2-b5^b4) LE -0.5"
 end node
 
 begin node
@@ -27,13 +27,13 @@ begin node
 end node
 
 begin node
-  name = "Class 2"
+  name = "water"
   type = Result
   location = 3,3
   parent name = "non-veg"
   parent decision = No
   class value = 2
-  class rgb = 255,0,0
+  class rgb = 0,0,255
 end node
 
 begin node
