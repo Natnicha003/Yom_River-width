@@ -1,0 +1,77 @@
+ENVI Decision Tree Text File (version=1.0)
+
+begin node
+  name = "NDVI"
+  type = Decision
+  location = 1,1
+  expression = "(b4-b3)/(b4+b3)LT -0.1"
+end node
+
+begin node
+  name = "non-veg"
+  type = Decision
+  location = 2,2
+  parent name = "NDVI"
+  parent decision = Yes
+  expression = "(b2+b5^b4)/(b2-b5^b4) eq  0"
+end node
+
+begin node
+  name = "Class 3"
+  type = Result
+  location = 3,4
+  parent name = "non-veg"
+  parent decision = Yes
+  class value = 3
+  class rgb = 0,255,0
+end node
+
+begin node
+  name = "water"
+  type = Result
+  location = 3,3
+  parent name = "non-veg"
+  parent decision = No
+  class value = 2
+  class rgb = 0,0,255
+end node
+
+begin node
+  name = "Veg >-0.1"
+  type = Result
+  location = 2,1
+  parent name = "NDVI"
+  parent decision = No
+  class value = 4
+  class rgb = 160,82,45
+end node
+
+begin variable
+  variable name = "b4"
+  file name = "F:\YOM_rw\Topo\GCPs\Date1989\Date1.tif"
+  file pos = 4
+end variable
+
+begin variable
+  variable name = "b3"
+  file name = "F:\YOM_rw\Topo\GCPs\Date1989\Date1.tif"
+  file pos = 3
+end variable
+
+begin variable
+  variable name = "b2"
+  file name = "F:\YOM_rw\Topo\GCPs\Date1989\Date1.tif"
+  file pos = 2
+end variable
+
+begin variable
+  variable name = "b5"
+  file name = "F:\YOM_rw\Topo\GCPs\Date1989\Date1.tif"
+  file pos = 5
+end variable
+
+begin variable
+  variable name = "b6"
+  file name = "F:\YOM_rw\Topo\GCPs\Date1989\Date1.tif"
+  file pos = 6
+end variable
